@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import CustomUser
+from django.contrib.auth import authenticate
+
 
 class CustomUserCreatingForm(forms.ModelForm):
     username = forms.CharField(label="Имя пользователя", max_length=100)
@@ -36,8 +38,13 @@ class CustomUserCreatingForm(forms.ModelForm):
         user.set_password(self.cleaned_data.get("password"))
         if commit:
             user.save()
-        return user  # Возвращаем пользователя вне блока if
+        return user
 
     class Meta:
         model = CustomUser
         fields = ("username", "first_name", "last_name", 'email')
+
+
+class CustomUserLoginForm(forms.Form):
+    username = forms.CharField(label="Имя пользователя", max_length=100)
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
