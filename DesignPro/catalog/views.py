@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout as auth_logout
 from django.shortcuts import redirect
+from .models import CustomUser
 
 
 def index(request):
@@ -42,7 +43,14 @@ class Login(FormView):
 
 def custom_logout(request):
     if request.user.is_authenticated:
-        auth_logout(request)  # Завершаем сессию пользователя
-        return redirect('index')  # Перенаправляем на главную страницу или нужную страницу
+        auth_logout(request)
+        return redirect('index')
     else:
         return redirect('login')
+
+
+class UserProfileListView(generic.ListView):
+    model = CustomUser
+    template_name = 'catalog/profile.html'
+
+

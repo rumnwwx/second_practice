@@ -1,0 +1,9 @@
+{% extends 'base_generic.html' %}
+
+{% block profile %}
+    <h1>Ваш профиль</h1>
+    <p>Ваше имя потльзователя: {{ user.username }}</p>
+    <p>Ваша имя: {{ user.first_name }}</p>
+    <p>Ваша фамилия: {{ user.last_name }}</p>
+    <p>Ваша email: {{ user.email }}</p>
+{% endblock %}

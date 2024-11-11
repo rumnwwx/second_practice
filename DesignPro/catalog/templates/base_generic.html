@@ -14,7 +14,7 @@
                 <li>DESIGN.PRO</li>
                 <li><a href="{% url 'index' %}">Главная</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="">Профиль</a></li>
+                    <li><a href="{% url 'profile' %}">Профиль</a></li>
                     <li><a href="{% url 'logout' %}">Выйти</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Войти</a></li>
@@ -30,6 +30,9 @@
             {% block content %}
             {% endblock %}
         {% endif %}
+
+        {% block profile %}
+        {% endblock %}
     </main>
 </body>
 </html>
