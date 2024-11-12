@@ -9,8 +9,11 @@ class CustomUserCreatingForm(forms.ModelForm):
     email = forms.EmailField(label="Адрес электронной почты", max_length=150)
     first_name = forms.CharField(label="Имя", max_length=100)
     last_name = forms.CharField(label="Фамилия", max_length=100)
+    patronym = forms.CharField(label="Отчество", max_length=150)
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
     password_confirm = forms.CharField(label="Подтвердить пароль", widget=forms.PasswordInput)
+
+
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
@@ -42,7 +45,7 @@ class CustomUserCreatingForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ("username", "first_name", "last_name", 'email')
+        fields = ("username", "first_name", "last_name", 'patronym', 'email')
 
 
 class CustomUserLoginForm(forms.Form):
