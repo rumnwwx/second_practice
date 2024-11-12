@@ -5,9 +5,10 @@
 
 {% block content %}
 <h1>Регистрация</h1>
-<form class="form" method="post" enctype="multipart/form-data">
+<form class="d-flex flex-column align-items-center" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+    <a href="">Условия пользования</a>
     <button class="btn btn-warning" type="submit">Зарегистрироваться</button>
 </form>
 {% endblock %}
