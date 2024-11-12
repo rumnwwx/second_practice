@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import CustomUser
 from django.contrib.auth import authenticate
+from django.utils.safestring import mark_safe
 
 
 class CustomUserCreatingForm(forms.ModelForm):
@@ -44,7 +45,7 @@ class CustomUserCreatingForm(forms.ModelForm):
     password_confirm = forms.CharField(label="", widget=forms.PasswordInput)
 
     user_agreement = forms.BooleanField(
-        label="Я согласен с условиями использования",
+        label=mark_safe('Я согласен с <a href="/catalog/register/agreement/">условиями использования</a>'),
         required=True,
         widget=forms.CheckboxInput
     )

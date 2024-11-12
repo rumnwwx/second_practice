@@ -6,7 +6,7 @@ body{
     background-color: aqua;
 }
 
-a:first-child{
+body > header > div > nav > a.fs-4{
     margin-right: 800px;
 }
 
@@ -27,4 +27,12 @@ form > p > input{
 
 #id_user_agreement{
     width: auto;
+}
+
+form > ul{
+    list-style-type: none;
+}
+
+body > main > form > p:nth-child(9) > label > a {
+    margin-right: 8px;
 }

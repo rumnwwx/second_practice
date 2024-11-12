@@ -51,3 +51,5 @@ class UserProfileListView(generic.ListView):
     template_name = 'catalog/profile.html'
 
 
+def user_agree(request):
+    return render(request, 'catalog/user_agreement.html')

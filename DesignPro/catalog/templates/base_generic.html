@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Мой сайт{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% load bootstrap5 %}
+    {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <style>
@@ -34,11 +34,21 @@
 </header>
 <main class="container">
     {% if user.is_authenticated %}
-    <h1>Добро пожаловать {{ user.username }}!</h1>
+        {% if request.resolver_match.view_name == 'index' %}
+        <h1>Добро пожаловать {{ user.username }}!</h1>
+        {% endif %}
     {% else %}
-    {% block content %}
-    {% endblock %}
+        {% block index %}
+        {% endblock %}
+        {% block register %}
+        {% endblock %}
+        {% block login %}
+        {% endblock %}
     {% endif %}
+        {% block agreement %}
+        {% endblock %}
+
+
 
     <div class="profile">
         {% block profile %}

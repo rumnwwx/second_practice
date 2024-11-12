@@ -3,12 +3,11 @@
 {% block title %}Регистрация{% endblock %}
 
 
-{% block content %}
+{% block register %}
 <h1>Регистрация</h1>
 <form class="d-flex flex-column align-items-center" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <a href="">Условия пользования</a>
     <button class="btn btn-warning" type="submit">Зарегистрироваться</button>
 </form>
 {% endblock %}
