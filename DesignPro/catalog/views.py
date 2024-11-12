@@ -24,7 +24,6 @@ class Login(FormView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
-        # Получаем данные из формы
         username = form.cleaned_data['username']
         password = form.cleaned_data['password']
 
@@ -32,13 +31,11 @@ class Login(FormView):
         user = authenticate(self.request, username=username, password=password)
 
         if user is not None:
-            # Если аутентификация прошла успешно, логиним пользователя
             login(self.request, user)
-            return super().form_valid(form)  # Перенаправление на success_url
+            return super().form_valid(form)
         else:
-            # Если аутентификация не удалась, добавляем ошибку
             form.add_error(None, 'Неправильное имя пользователя или пароль.')
-            return self.form_invalid(form)  # Возвращаем форму с ошибкой
+            return self.form_invalid(form)
 
 
 def custom_logout(request):
