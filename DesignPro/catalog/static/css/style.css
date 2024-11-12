@@ -36,3 +36,10 @@ form > ul{
 body > main > form > p:nth-child(9) > label > a {
     margin-right: 8px;
 }
+
+#id_description{
+    width: 400px;
+    padding: 4px 10px;
+    border: 2px solid #d5a97f;
+    border-radius: 10px;
+}

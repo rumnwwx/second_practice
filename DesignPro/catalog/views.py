@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.views import generic
-from .forms import CustomUserCreatingForm, CustomUserLoginForm
+from .forms import CustomUserCreatingForm, CustomUserLoginForm, DesignRequestForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout as auth_logout
 from django.shortcuts import redirect
-from .models import CustomUser
+from .models import CustomUser, DesignRequests
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index(request):
@@ -53,3 +55,14 @@ class UserProfileListView(generic.ListView):
 
 def user_agree(request):
     return render(request, 'catalog/user_agreement.html')
+
+
+class DesignRequestCreateView(LoginRequiredMixin, CreateView):
+    model = DesignRequests
+    form_class = DesignRequestForm
+    template_name = 'catalog/create_design_request.html'
+    success_url = '/catalog/profile/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

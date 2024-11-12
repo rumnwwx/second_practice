@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import CustomUser
+from .models import CustomUser, DesignRequests
 from django.contrib.auth import authenticate
 from django.utils.safestring import mark_safe
 
@@ -92,3 +92,24 @@ class CustomUserLoginForm(forms.Form):
         })
     )
     password = forms.CharField(label="", widget=forms.PasswordInput)
+
+
+class DesignRequestForm(forms.ModelForm):
+    title = forms.CharField(
+        label="",
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Название заявки'
+        })
+    )
+
+    description = forms.CharField(
+        label="",
+        widget=forms.Textarea(attrs={
+            'placeholder': 'Описание заявки'
+        })
+    )
+
+    class Meta:
+        model = DesignRequests
+        fields = ['title', 'description']
