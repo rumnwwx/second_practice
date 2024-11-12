@@ -6,7 +6,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout as auth_logout
 from django.shortcuts import redirect
 from .models import CustomUser, DesignRequests
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -48,7 +48,7 @@ def custom_logout(request):
         return redirect('login')
 
 
-class UserProfileListView(generic.ListView):
+class UserProfileListView(LoginRequiredMixin, generic.ListView):
     model = CustomUser
     template_name = 'catalog/profile.html'
 
@@ -57,12 +57,22 @@ def user_agree(request):
     return render(request, 'catalog/user_agreement.html')
 
 
-class DesignRequestCreateView(LoginRequiredMixin, CreateView):
+class DesignRequestCreateView(LoginRequiredMixin, generic.CreateView):
     model = DesignRequests
     form_class = DesignRequestForm
-    template_name = 'catalog/create_design_request.html'
+    template_name = 'catalog/design_request_create.html'
     success_url = '/catalog/profile/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class DesignRequestListView(LoginRequiredMixin, generic.ListView):
+    model = DesignRequests
+    template_name = 'catalog/design_request_list.html'
+    context_object_name = 'design_requests'
+    success_url = '/catalog/profile/'
+
+    def get_queryset(self):
+        return DesignRequests.objects.filter(user=self.request.user)

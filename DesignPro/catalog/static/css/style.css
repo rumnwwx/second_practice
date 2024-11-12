@@ -43,3 +43,10 @@ body > main > form > p:nth-child(9) > label > a {
     border: 2px solid #d5a97f;
     border-radius: 10px;
 }
+
+body > main > ul > li{
+    background-color: beige;
+    padding: 4px 10px;
+    border: 2px solid #d5a97f;
+    border-radius: 10px;
+}

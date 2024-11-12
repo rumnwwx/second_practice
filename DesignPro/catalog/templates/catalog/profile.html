@@ -9,4 +9,6 @@
 <p>Имя пользователя: {{ user.username }}</p>
 <p>Ваше ФИО: {{ user.last_name }} {{ user.first_name }} {{ user.patronym }}</p>
 <p>Ваша email: {{ user.email }}</p>
+<a href="{% url 'design_request_view' %}" class="btn btn-warning">Мои заявки</a>
 {% endblock %}
+
