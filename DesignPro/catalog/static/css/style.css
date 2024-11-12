@@ -44,9 +44,16 @@ body > main > form > p:nth-child(9) > label > a {
     border-radius: 10px;
 }
 
-body > main > ul > li{
-    background-color: beige;
-    padding: 4px 10px;
-    border: 2px solid #d5a97f;
+.request_list{
+    width: 100%;
+    background-color: #fff1dc;
+    padding: 20px 20px;
+    border: 2px solid #f8c386;
     border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.request_list_items{
+    display: flex;
+    justify-content: space-between;
 }

@@ -3,10 +3,18 @@
 
 {% block mylist %}
   <h1>Ваши заявки на дизайн</h1>
+  <br>
   {% if design_requests %}
     <ul>
       {% for request in design_requests %}
-        <li>{{ request.title }} - {{ request.description }}</li>
+        <div class="request_list">
+          <h3>{{ request.title }}</h3>
+          <p>{{ request.description }}</p>
+          <div class="request_list_items">
+              <a href="design_request_delete" class="btn btn-warning">Удалить заявку</a>
+              <p>{{ request.created_at }}</p>
+          </div>
+        </div>
       {% endfor %}
     </ul>
   {% else %}

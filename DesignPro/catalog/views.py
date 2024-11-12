@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from .models import CustomUser, DesignRequests
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import DeleteView
 
 
 def index(request):
@@ -76,3 +77,19 @@ class DesignRequestListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return DesignRequests.objects.filter(user=self.request.user)
+
+
+class DesignRequestDelete(DeleteView):
+    model = DesignRequests
+    success_url = reverse_lazy('design_request_view')
+    template_name = 'catalog/design_request_confirm_delete.html'
+
+
+#class DesignRequestDelete(generic.DeleteView):
+    #model = DesignRequests
+    #template_name = 'catalog/designrequest_confirm_delete.html'
+    #success_url = reverse_lazy('profile')
+    #permission_required = 'catalog.delete_request'
+
+    #def get_queryset(self):
+        #return super().get_queryset()
