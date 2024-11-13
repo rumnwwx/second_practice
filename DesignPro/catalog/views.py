@@ -82,14 +82,7 @@ class DesignRequestListView(LoginRequiredMixin, generic.ListView):
 class DesignRequestDelete(DeleteView):
     model = DesignRequests
     success_url = reverse_lazy('design_request_view')
-    template_name = 'catalog/design_request_confirm_delete.html'
+    template_name = 'catalog/design_request_delete.html'
 
-
-#class DesignRequestDelete(generic.DeleteView):
-    #model = DesignRequests
-    #template_name = 'catalog/designrequest_confirm_delete.html'
-    #success_url = reverse_lazy('profile')
-    #permission_required = 'catalog.delete_request'
-
-    #def get_queryset(self):
-        #return super().get_queryset()
+    def get_queryset(self):
+        return super().get_queryset()

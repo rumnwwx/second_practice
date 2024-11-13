@@ -1,5 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
+from django.shortcuts import render
 from .models import CustomUser, DesignRequests
 from django.contrib.auth import authenticate
 from django.utils.safestring import mark_safe
@@ -106,10 +108,38 @@ class DesignRequestForm(forms.ModelForm):
     description = forms.CharField(
         label="",
         widget=forms.Textarea(attrs={
-            'placeholder': 'Описание заявки'
+            'placeholder': 'Описание заявки',
+            'rows': 4,
+            'cols': 40
         })
     )
 
+    image_sale = forms.FileField(
+        label="",
+        widget=forms.FileInput(),
+        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])]
+    )
+
+
     class Meta:
         model = DesignRequests
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'category', 'image_sale']
+
+def your_view(request):
+    if request.method == 'POST':
+        form = DesignRequestForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                instance = DesignRequests()
+                instance.title = form.cleaned_data['title']
+                instance.description = form.cleaned_data['description']
+                instance.image_sale = form.cleaned_data['image_sale']
+                instance.save()
+                return render(request, 'success.html')
+            except ValueError:
+                form.add_error(None, "Ошибка при сохранении данных.")
+    else:
+        form = DesignRequestForm()
+
+    return render(request, 'design_request_list.html', {'form': form})
+

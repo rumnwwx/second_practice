@@ -50,10 +50,24 @@ body > main > form > p:nth-child(9) > label > a {
     padding: 20px 20px;
     border: 2px solid #f8c386;
     border-radius: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .request_list_items{
     display: flex;
     justify-content: space-between;
+}
+
+.photocard{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 5px auto;
+    border: 2px solid #9c713f;
+    border-radius: 10px;
+}
+
+.request_list_description{
+    max-width: 100%;
+    word-break: break-word;
 }

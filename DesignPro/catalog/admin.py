@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser, DesignRequests
+from .models import CustomUser, DesignRequests, Category
 
 
 class CustomUserAdmin(admin.ModelAdmin):
@@ -16,3 +16,4 @@ class DesignRequestsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(DesignRequests, DesignRequestsAdmin)
+admin.site.register(Category)

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Мой сайт{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% load django_bootstrap5 %}
+    {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <style>
@@ -53,6 +53,8 @@
         {% block profile %}
         {% endblock %}
         {% block mylist %}
+        {% endblock %}
+        {% block design_delete %}
         {% endblock %}
 </main>
 </body>

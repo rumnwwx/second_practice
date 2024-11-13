@@ -12,7 +12,7 @@ urlpatterns = [
     path('catalog/logout/', custom_logout, name='logout'),
     path('catalog/profile/', UserProfileListView.as_view(), name='profile'),
     path('catalog/design_request/', DesignRequestCreateView.as_view(), name='design_request'),
-    path('catalog/profile/view', DesignRequestListView.as_view(), name='design_request_view'),
-    path('catalog/profile/view/<int:pk>/delete', DesignRequestDelete.as_view(), name='design_request_delete'),
+    path('catalog/profile/view/', DesignRequestListView.as_view(), name='design_request_view'),
+    path('/view/<int:pk>/delete/', DesignRequestDelete.as_view(), name='design_request_delete'),
 ]
 
