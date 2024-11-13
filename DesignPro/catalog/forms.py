@@ -105,6 +105,8 @@ class DesignRequestForm(forms.ModelForm):
         })
     )
 
+    status = forms.CharField
+
     description = forms.CharField(
         label="",
         widget=forms.Textarea(attrs={

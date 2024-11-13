@@ -46,11 +46,12 @@ body > main > form > p:nth-child(9) > label > a {
 
 .request_list{
     width: 100%;
-    background-color: #fff1dc;
+    background-color: #f8f5f5;
     padding: 20px 20px;
-    border: 2px solid #f8c386;
+    border: 1px solid #d7dee8;
     border-radius: 10px;
     margin-bottom: 10px;
+    box-shadow: 0 4px 10px #e0e7ef;
 }
 
 .request_list_items{
@@ -63,11 +64,17 @@ body > main > form > p:nth-child(9) > label > a {
     height: 300px;
     object-fit: cover;
     margin: 5px auto;
-    border: 2px solid #9c713f;
     border-radius: 10px;
 }
 
 .request_list_description{
     max-width: 100%;
     word-break: break-word;
+}
+
+#id_category{
+    width: 400px;
+    padding: 4px 10px;
+    border: 2px solid #d5a97f;
+    border-radius: 10px;
 }
