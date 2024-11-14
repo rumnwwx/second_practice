@@ -104,3 +104,7 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile')
+
+
+def admin_panel(request):
+    return render(request, 'catalog/admin_panel.html')

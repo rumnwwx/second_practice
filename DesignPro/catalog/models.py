@@ -29,12 +29,13 @@ class Category(models.Model):
 
 
 class DesignRequests(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    image_sale = models.FileField(blank=True, upload_to='images/')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='', verbose_name='')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='Пользователь')
+    title = models.CharField(max_length=200, verbose_name='Название')
+    description = models.TextField(verbose_name='Описание')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
+    image_sale = models.FileField(blank=True, upload_to='images/', verbose_name='Изображение')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='', verbose_name='Категория')
+    comments = models.TextField(blank=True, verbose_name='Комментарий')
     STATUS_CHOICES = [
         ('N', 'Новая'),
         ('P', 'Принято в работу'),
@@ -42,7 +43,10 @@ class DesignRequests(models.Model):
     ]
     status = models.CharField(max_length=20,
                               choices=STATUS_CHOICES,
-                              default='N')
+                              default='N',
+                              verbose_name='Статус')
+    updated_image_sale = models.FileField(upload_to='admin_img/', verbose_name="Обновленное фото дизайна", blank=True,
+                                         null=True)
 
     def __str__(self):
         return self.title

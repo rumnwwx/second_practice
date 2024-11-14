@@ -6,9 +6,6 @@ body{
     background-color: aqua;
 }
 
-body > header > div > nav > a.fs-4{
-    margin-right: 800px;
-}
 
 nav.d-flex.justify-content-between.align-items-center {
     height: 70px;
