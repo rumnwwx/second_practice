@@ -12,7 +12,13 @@ from django.views.generic.edit import DeleteView
 
 
 def index(request):
-    return render(request, 'index.html')
+    design_requests = DesignRequests.objects.order_by('-created_at')[:4]
+
+    context = {
+        'design_requests': design_requests,
+    }
+
+    return render(request,'catalog/design_all_list.html',context)
 
 
 class Register(generic.CreateView):
