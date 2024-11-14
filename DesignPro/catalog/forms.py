@@ -41,8 +41,14 @@ class CustomUserCreatingForm(forms.ModelForm):
             'placeholder': 'Введите отчество'
         })
     )
-    password = forms.CharField(label="", widget=forms.PasswordInput)
-    password_confirm = forms.CharField(label="", widget=forms.PasswordInput)
+    password = forms.CharField(label="",
+                               widget=forms.PasswordInput(attrs={
+            'placeholder': 'Введите пароль'
+        }))
+    password_confirm = forms.CharField(label="",
+                               widget=forms.PasswordInput(attrs={
+            'placeholder': 'Повторите пароль'
+        }))
 
     user_agreement = forms.BooleanField(
         label=mark_safe('Я согласен с <a href="/catalog/register/agreement/">условиями использования</a>'),
