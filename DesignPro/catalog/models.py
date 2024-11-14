@@ -44,8 +44,7 @@ class DesignRequests(models.Model):
                               choices=STATUS_CHOICES,
                               default='N',
                               verbose_name='Статус')
-    updated_image_sale = models.FileField(upload_to='admin_img/', verbose_name="Обновленное фото дизайна", blank=True,
-                                         null=True)
+    updated_image_sale = models.FileField(upload_to='admin_img/', verbose_name="Обновленное фото дизайна", blank=True, null=True)
 
     def __str__(self):
         return self.title

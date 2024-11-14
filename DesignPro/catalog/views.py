@@ -18,7 +18,7 @@ def index(request):
     context = {
         'design_requests': design_requests,
     }
-    return render(request,'catalog/design_all_list.html',context)
+    return render(request, 'catalog/design_all_list.html', context)
 
 
 class Register(generic.CreateView):
@@ -104,7 +104,3 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile')
-
-
-def admin_panel(request):
-    return render(request, 'catalog/admin_panel.html')

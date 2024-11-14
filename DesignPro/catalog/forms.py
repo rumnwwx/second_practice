@@ -1,9 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
-from django.shortcuts import render
 from .models import CustomUser, DesignRequests
-from django.contrib.auth import authenticate
 from django.utils.safestring import mark_safe
 
 
@@ -43,8 +41,8 @@ class CustomUserCreatingForm(forms.ModelForm):
             'placeholder': 'Введите отчество'
         })
     )
-    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль' }))
-    password_confirm = forms.CharField(label="", widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль' }))
+    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль'}))
+    password_confirm = forms.CharField(label="", widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
 
     user_agreement = forms.BooleanField(
         label=mark_safe('Я согласен с <a href="/catalog/register/agreement/">условиями использования</a>'),
@@ -122,7 +120,6 @@ class DesignRequestForm(forms.ModelForm):
         validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])]
     )
 
-
     class Meta:
         model = DesignRequests
         fields = ['title', 'description', 'category', 'image_sale']
@@ -150,6 +147,7 @@ class CustomUserUpdateForm(forms.ModelForm):
             'placeholder': 'Введите отчество'
         })
     )
+
     class Meta:
         model = CustomUser
         fields = ['first_name', 'last_name', 'patronym']

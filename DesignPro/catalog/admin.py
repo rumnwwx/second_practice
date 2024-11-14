@@ -5,7 +5,7 @@ from django.db import transaction
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'patronym' )
+    list_display = ('username', 'email', 'first_name', 'last_name', 'patronym')
     search_fields = ('username', 'email', 'first_name', 'last_name', 'patronym')
 
 
@@ -48,7 +48,6 @@ class DesignRequestsAdmin(admin.ModelAdmin):
             obj.comment = comment or ''
             obj.done_status_image = image_sale
             super().save_model(request, obj, form, change)
-
 
 
 admin.site.register(DesignRequests, DesignRequestsAdmin)

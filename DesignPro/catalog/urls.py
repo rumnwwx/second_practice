@@ -1,12 +1,11 @@
 from django.urls import path
-from .views import index, custom_logout, UserProfileListView, DesignRequestCreateView, DesignRequestListView, DesignRequestDelete, ProfileUpdate, admin_panel
+from .views import index, custom_logout, UserProfileListView, DesignRequestCreateView, DesignRequestListView, DesignRequestDelete, ProfileUpdate
 from . import views
 from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
     path('catalog/', index, name='index'),
-    path('catalog/admin_panel', admin_panel, name='admin_panel'),
     path('catalog/register/', views.Register.as_view(), name='register'),
     path('catalog/register/agreement/', views.user_agree, name='agreement'),
     path('catalog/login/', views.Login.as_view(), name='login'),
@@ -17,4 +16,3 @@ urlpatterns = [
     path('catalog/profile/view/', DesignRequestListView.as_view(), name='design_request_view'),
     path('view/<int:pk>/delete/', DesignRequestDelete.as_view(), name='design_request_delete'),
 ]
-
