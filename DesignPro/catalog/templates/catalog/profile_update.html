@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Обновить профиль{% endblock %}
+
+
+{% block profile_update %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url 'profile' %}" class="btn btn-warning">Обновить</a>
+</form>
+{% endblock %}
+

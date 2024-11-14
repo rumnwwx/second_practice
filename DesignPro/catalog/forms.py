@@ -127,21 +127,4 @@ class DesignRequestForm(forms.ModelForm):
         model = DesignRequests
         fields = ['title', 'description', 'category', 'image_sale']
 
-def your_view(request):
-    if request.method == 'POST':
-        form = DesignRequestForm(request.POST, request.FILES)
-        if form.is_valid():
-            try:
-                instance = DesignRequests()
-                instance.title = form.cleaned_data['title']
-                instance.description = form.cleaned_data['description']
-                instance.image_sale = form.cleaned_data['image_sale']
-                instance.save()
-                return render(request, 'success.html')
-            except ValueError:
-                form.add_error(None, "Ошибка при сохранении данных.")
-    else:
-        form = DesignRequestForm()
-
-    return render(request, 'design_request_list.html', {'form': form})
 

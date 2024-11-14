@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.shortcuts import render
 from django.views import generic
 from .forms import CustomUserCreatingForm, CustomUserLoginForm, DesignRequestForm
@@ -8,7 +9,7 @@ from django.shortcuts import redirect
 from .models import CustomUser, DesignRequests
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, UpdateView
 
 
 def index(request):
@@ -92,3 +93,36 @@ class DesignRequestDelete(DeleteView):
 
     def get_queryset(self):
         return super().get_queryset()
+
+
+# class ProfileUpdate(LoginRequiredMixin, UpdateView):
+#     model = CustomUser
+#     fields = ['first_name', 'last_name', 'patronym']
+#     template_name = 'catalog/profile_update.html'
+#     #
+#     # def get_object(self, queryset=None):
+#     #     return self.request.user
+#     #
+#     # def get_form(self, form_class=None):
+#     #     form = super().get_form(form_class)
+#     #     form.fields.pop('username', None)
+#     #     form.fields.pop('email', None)
+#     #     return form
+#     #
+#     # def form_valid(self, form):
+#     #     form.save()
+#     #     return super().form_valid(form)
+#     #
+#     # def get_success_url(self):
+#     #     return reverse('profile')
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    fields = ['first_name', 'last_name', 'patronym']
+    template_name = 'catalog/profile_update.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse('profile')

@@ -34,7 +34,7 @@ class DesignRequests(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     image_sale = models.FileField(blank=True, upload_to='images/')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='', verbose_name='')
     STATUS_CHOICES = [
         ('N', 'Новая'),
         ('P', 'Принято в работу'),
@@ -42,7 +42,7 @@ class DesignRequests(models.Model):
     ]
     status = models.CharField(max_length=20,
                               choices=STATUS_CHOICES,
-                              default='new')
+                              default='N')
 
     def __str__(self):
         return self.title
