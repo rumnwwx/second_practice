@@ -18,7 +18,6 @@ def index(request):
     context = {
         'design_requests': design_requests,
     }
-
     return render(request,'catalog/design_all_list.html',context)
 
 
@@ -77,6 +76,7 @@ class DesignRequestCreateView(LoginRequiredMixin, generic.CreateView):
 
 
 class DesignRequestListView(LoginRequiredMixin, generic.ListView):
+    accepted_requests_count = DesignRequests.objects.filter(status='P').count()
     model = DesignRequests
     template_name = 'catalog/design_request_list.html'
     context_object_name = 'design_requests'

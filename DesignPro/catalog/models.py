@@ -1,7 +1,7 @@
-from cProfile import label
-
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 
 class CustomUser(AbstractUser):
@@ -13,16 +13,15 @@ class CustomUser(AbstractUser):
     password = models.CharField(max_length=100)
     password_confirm = models.CharField(max_length=100)
 
-
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
 
     def __str__(self):
         return self.username
 
-class Category(models.Model):
-    name=models.CharField(max_length=150)
 
+class Category(models.Model):
+    name = models.CharField(max_length=150)
 
     def __str__(self):
         return self.name
@@ -51,3 +50,7 @@ class DesignRequests(models.Model):
     def __str__(self):
         return self.title
 
+
+@receiver(pre_delete, sender=Category)
+def delete_requests_with_category(sender, instance, **kwargs):
+    DesignRequests.objects.filter(category=instance).delete()
