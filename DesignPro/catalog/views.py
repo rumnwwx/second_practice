@@ -1,7 +1,7 @@
 from audioop import reverse
 from django.shortcuts import render
 from django.views import generic
-from .forms import CustomUserCreatingForm, CustomUserLoginForm, DesignRequestForm
+from .forms import CustomUserCreatingForm, CustomUserLoginForm, DesignRequestForm, CustomUserUpdateForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth import authenticate, login, logout as auth_logout
@@ -95,34 +95,12 @@ class DesignRequestDelete(DeleteView):
         return super().get_queryset()
 
 
-# class ProfileUpdate(LoginRequiredMixin, UpdateView):
-#     model = CustomUser
-#     fields = ['first_name', 'last_name', 'patronym']
-#     template_name = 'catalog/profile_update.html'
-#     #
-#     # def get_object(self, queryset=None):
-#     #     return self.request.user
-#     #
-#     # def get_form(self, form_class=None):
-#     #     form = super().get_form(form_class)
-#     #     form.fields.pop('username', None)
-#     #     form.fields.pop('email', None)
-#     #     return form
-#     #
-#     # def form_valid(self, form):
-#     #     form.save()
-#     #     return super().form_valid(form)
-#     #
-#     # def get_success_url(self):
-#     #     return reverse('profile')
-
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
-    model = CustomUser
-    fields = ['first_name', 'last_name', 'patronym']
+    form_class = CustomUserUpdateForm
     template_name = 'catalog/profile_update.html'
 
     def get_object(self, queryset=None):
         return self.request.user
 
     def get_success_url(self):
-        return reverse('profile')
+        return reverse_lazy('profile')

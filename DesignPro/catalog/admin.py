@@ -11,8 +11,8 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 
 class DesignRequestsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'title', 'description', 'created_at')
-    search_fields = ('user', 'title', 'description', 'created_at')
+    list_display = ('user', 'title', 'description', 'created_at', 'status')
+    search_fields = ('user', 'title', 'description', 'created_at', 'status')
 
 
 admin.site.register(DesignRequests, DesignRequestsAdmin)

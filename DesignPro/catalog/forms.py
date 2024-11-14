@@ -128,3 +128,28 @@ class DesignRequestForm(forms.ModelForm):
         fields = ['title', 'description', 'category', 'image_sale']
 
 
+class CustomUserUpdateForm(forms.ModelForm):
+    first_name = forms.CharField(
+        label="",
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Введите имя'
+        })
+    )
+    last_name = forms.CharField(
+        label="",
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Введите фамилию'
+        })
+    )
+    patronym = forms.CharField(
+        label="",
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Введите отчество'
+        })
+    )
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'patronym']
