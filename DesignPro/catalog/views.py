@@ -1,4 +1,3 @@
-from audioop import reverse
 from django.shortcuts import render
 from django.views import generic
 from .forms import CustomUserCreatingForm, CustomUserLoginForm, DesignRequestForm, CustomUserUpdateForm
@@ -10,6 +9,7 @@ from .models import CustomUser, DesignRequests
 from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import DeleteView, UpdateView
+from django.core.exceptions import PermissionDenied
 
 
 def index(request):
@@ -91,8 +91,13 @@ class DesignRequestDelete(DeleteView):
     success_url = reverse_lazy('design_request_view')
     template_name = 'catalog/design_request_delete.html'
 
-    def get_queryset(self):
-        return super().get_queryset()
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+
+        if obj.status in ['P', 'C']:
+            raise PermissionDenied("Невозможно удалить заявку, которая в процессе или уже выполнена.")
+
+        return obj
 
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
