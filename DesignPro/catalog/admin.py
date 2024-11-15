@@ -14,9 +14,10 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 
 class DesignRequestsAdmin(admin.ModelAdmin):
+    readonly_fields = ('user', 'title', 'description', 'created_at','category')
     list_display = ('user', 'title', 'status', 'category', 'image_sale', 'comments')
     search_fields = ('user', 'title', 'description', 'created_at', 'status', 'category', 'comments')
-    exclude = ['image_sale', 'user', 'title', 'description', 'created_at', 'category']
+    exclude = ['image_sale', 'category']
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
