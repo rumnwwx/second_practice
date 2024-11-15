@@ -75,3 +75,8 @@ body > main > form > p:nth-child(9) > label > a {
     border: 2px solid #d5a97f;
     border-radius: 10px;
 }
+
+.confirm{
+    width: 24px;
+    height: 24px;
+}

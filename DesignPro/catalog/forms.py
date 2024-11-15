@@ -50,6 +50,7 @@ class CustomUserCreatingForm(forms.ModelForm):
         widget=forms.CheckboxInput
     )
 
+
     def clean_username(self):
         username = self.cleaned_data.get("username")
         if CustomUser.objects.filter(username=username).exists():

@@ -12,6 +12,8 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=150, blank=True)
     password = models.CharField(max_length=100)
     password_confirm = models.CharField(max_length=100)
+    confirmed = models.BooleanField(default=False, verbose_name='Подтверждение пользователя')
+
 
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
